@@ -8,8 +8,8 @@ namespace AdventOfCode_2023._04
         private static partial Regex CardRegex();
 
         public int Id { get; set; }
-        public int[] WinningNumbers { get; set; } = [];
-        public int[] ActualNumbers { get; set; } = [];
+        public int[] WinningNumbers { get; set; } = Array.Empty<int>();
+        public int[] ActualNumbers { get; set; } = Array.Empty<int>();
 
         public static Card FromLine(string line)
         {
