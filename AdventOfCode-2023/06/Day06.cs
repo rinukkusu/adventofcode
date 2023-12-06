@@ -19,10 +19,10 @@ public class Day06
             .ToList();
 
         // pivot list
-        var races = rawRaces[0].Select((x, idx) => (x, rawRaces[1][idx]));
+        var races = rawRaces[0].Select((x, idx) => (time: x, distance: rawRaces[1][idx]));
 
         var result = races
-            .Select(x => CalculateWinners(x.Item1, x.Item2))
+            .Select(x => CalculateWinners(x.time, x.distance))
             .Aggregate((a, b) => a * b);
 
         Assert.Equal(expectedResult, result);
