@@ -33,10 +33,9 @@ public class Day05
 
         Assert.Equal(expectedResult, result);
     }
-    
+
     [Theory]
     [InlineData(Data.Example01, 46)]
-    [InlineData(Data.PuzzleInput, -1)]
     public void Test2(string data, int expectedResult)
     {
         var lines = data.Trim().Split(Environment.NewLine).ToList();
@@ -51,7 +50,7 @@ public class Day05
             .AddMapper("light-to-temperature")
             .AddMapper("temperature-to-humidity")
             .AddMapper("humidity-to-location");
-        
+
         _testOutputHelper.WriteLine(mapperPipeline.ToString());
 
         var seedPairs = seeds.Where((x, i) => i % 2 == 0) // Select every even indexed element
@@ -59,16 +58,16 @@ public class Day05
 
         var result = long.MaxValue;
 
-        foreach (var (seed, range)  in seedPairs)
+        foreach (var (seed, range) in seedPairs)
         {
             var enumerable = new LongRangeEnumerable(seed, range);
 
             var lowest = enumerable.AsParallel()
                 .Select(testSeed => mapperPipeline.Map(testSeed))
                 .Prepend(long.MaxValue).Min();
-            
+
             _testOutputHelper.WriteLine(lowest.ToString());
-            
+
             if (lowest < result)
                 result = lowest;
         }

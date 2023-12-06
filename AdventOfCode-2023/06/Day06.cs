@@ -14,7 +14,7 @@ public class Day06
     public void Test1(string data, int expectedResult)
     {
         var rawRaces = data.Trim().Split(Environment.NewLine)
-            .Select(x => x.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
+            .Select(x => x.Split(" ", StringSplitOptions.RemoveEmptyEntries))
             .Select(x => x.Skip(1).Select(int.Parse).ToList())
             .ToList();
 
@@ -34,7 +34,7 @@ public class Day06
     public void Test2(string data, int expectedResult)
     {
         var rawRaces = data.Trim().Split(Environment.NewLine)
-            .Select(x => x.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
+            .Select(x => x.Split(" ", StringSplitOptions.RemoveEmptyEntries))
             .Select(x => x.Skip(1))
             .Select(x => string.Join("", x))
             .Select(long.Parse)
